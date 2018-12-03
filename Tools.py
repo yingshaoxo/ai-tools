@@ -26,7 +26,7 @@ git reset --hard HEAD^
         self.push(words)
         t.run(f"""
 yarn build
-mv ./build ../ai-tools-html-codes/public -fr
+mv ./build/* ../ai-tools-html-codes/ -f
 
 cd ../ai-tools-html-codes
 python3 Tools.py push '{words}'
