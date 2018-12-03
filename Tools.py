@@ -23,9 +23,12 @@ git reset --hard HEAD^
 """)
 
     def publish(self, words):
+        self.push(words)
         t.run(f"""
 yarn build
-cp ./public ../ai-tools-html-codes/ -fr
+cp ./build ../ai-tools-html-codes/ -fr
+
+cd ../ai-tools-html-codes
 python3 Tools.py push '{words}'
 """)
 
