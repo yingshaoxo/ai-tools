@@ -22,5 +22,12 @@ git reset --hard origin/master
 git reset --hard HEAD^
 """)
 
+    def publish(self, words):
+        t.run(f"""
+yarn build
+cp ./public ../ai-tools-html-codes/ -fr
+python3 Tools.py push '{words}'
+""")
+
 py.make_it_runnable()
 py.fire(Tools)
