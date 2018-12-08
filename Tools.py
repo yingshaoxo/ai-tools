@@ -45,7 +45,7 @@ cp ./build/* ../ai-tools-html-codes/ -fr
 rm ./build -fr
 
 cd ../ai-tools-html-codes
-python3 Tools.py push '{words}'
+python3 Tools.py push "{words}"
 """)
 
     def dev(self):
