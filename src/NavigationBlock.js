@@ -1,121 +1,59 @@
 import React, { Component } from 'react';
 
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
+import { ExpansionList, ExpansionPanel } from 'react-md';
 
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import Typography from '@material-ui/core/Typography';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Tooltipped } from 'react-md';
 
-const styles = theme => ({
-  root: {
-    width: '100%',
-  },
-  heading: {
-    fontSize: theme.typography.pxToRem(15),
-    flexBasis: '33.33%',
-    flexShrink: 0,
-  },
-  secondaryHeading: {
-    fontSize: theme.typography.pxToRem(15),
-    color: theme.palette.text.secondary,
-  },
-});
+import { Button } from 'react-md';
 
-class ExpansionPanels extends Component {
-    state = {
-        expanded: true,
-        data: this.props.data,
-    };
-
-    handle_change = () => {
-        var expand_or_not = false;
-        if (this.state.expanded) {
-            expand_or_not = false;
-        } else {
-            expand_or_not = true;
-        }
-        this.setState({
-            expanded: expand_or_not,
-        })
-    }
-
-    generate_panels = () => {
-        const { data } = this.state
-
-        let all = []
-        for (var index in data) {
-            all.push(
-                <ExpansionPanel
-                    expanded={this.state.expanded}
-                    onChange={ () => {
-                        this.handle_change()
+const generate_elements = (elements) => {
+    return elements.map(item => {
+        return(
+            <Tooltipped
+                label={item['description']}
+                position="top"
+                delay={500}
+            >
+                <Button 
+                    flat
+                    style={{
+                        textTransform: 'none'
                     }}
-                >
-                    <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-                        <Typography>{data[index]['category']}</Typography>
-                    </ExpansionPanelSummary>
-                    
-                    <ExpansionPanelDetails>
-                        <Tooltips
-                            elements={data[index]['elements']}
-                        ></Tooltips>
-                    </ExpansionPanelDetails>
-                </ExpansionPanel>
-            )
-        }
-        return all
-    }
-
-    render() {
-        return (
-            <div>
-                {this.generate_panels()}
-            </div>
-        );
-    }
+                    onClick={() => {
+                        window.open(item['url'], "_blank")
+                    }}
+                >{item['title']}</Button>
+            </Tooltipped>
+        )
+    })
 }
 
-export class Tooltips extends Component {
-    state = {
-        elements: this.props.elements
+const generate_panels = (data) => {
+    let all = []
+    for (var index in data) {
+        all.push(
+            <ExpansionPanel 
+                label={data[index]['category']} 
+                footer={null} 
+                defaultExpanded
+            >
+                {generate_elements(data[index]['elements'])}
+            </ExpansionPanel>
+        )
     }
+    return all
+}
 
-    handle_click = (url) => {
-        window.open(url, "_blank")
-    }
-
-    generate_elements = () => {
-        const { elements } = this.state
-
-        let all = []
-        for (var index in elements) {
-            all.push(
-                <Tooltip title={elements[index]['description']}>
-                    <Button
-                        onClick={ () => {
-                            this.handle_click(elements[index]['url'])
-                        } }
-                        style={{
-                            textTransform: 'none'
-                        }}
-                    >
-                        {elements[index]['title']}
-                    </Button>
-                </Tooltip>
-            )
-        }
-
-        return all
+export class Panels extends Component {
+    constructor(props) {
+        super(props)
     }
 
     render() {
         return (
-            <div>
-                {this.generate_elements()}
-            </div>
+            <ExpansionList>
+                {generate_panels(this.props.data)}
+            </ExpansionList>
         );
     }
 }
@@ -160,9 +98,9 @@ export class Navigation extends Component {
     render() {
         return (
             <div>
-                <ExpansionPanels
+                <Panels
                     data = {this.state.data}
-                ></ExpansionPanels>
+                ></Panels>
             </div>
         );
     }
