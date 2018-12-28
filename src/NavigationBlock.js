@@ -51,7 +51,11 @@ export class Panels extends Component {
 
     render() {
         return (
-            <ExpansionList>
+            <ExpansionList
+                style={{
+                    minWidth: "70vw",
+                }}
+            >
                 {generate_panels(this.props.data)}
             </ExpansionList>
         );
@@ -79,7 +83,16 @@ export class Navigation extends Component {
                         },
                     ],
                 },
-
+                {
+                    category: 'Music',
+                    elements: [
+                        {
+                            title: 'Beat Blender',
+                            url: 'https://experiments.withgoogle.com/ai/beat-blender/view/',
+                            description: 'Dynamically create drum music',
+                        },
+                    ],
+                },
                 {
                     category: 'Video',
                     elements: [
