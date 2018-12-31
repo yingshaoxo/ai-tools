@@ -97,9 +97,25 @@ export class Navigation extends Component {
                     category: 'Video',
                     elements: [
                         {
+                            title: '网易见外工作台',
+                            url: 'https://jianwai.netease.com',
+                            description: '给视频自动化添加字幕、转译，类似autosub',
+                        },
+                        ,
+                        {
                             title: 'Deep fake',
                             url: 'https://github.com/deepfakes/faceswap',
                             description: 'Change face in video',
+                        },
+                    ],
+                },
+                {
+                    category: 'Dev',
+                    elements: [
+                        {
+                            title: 'SeedBank',
+                            url: 'https://research.google.com/seedbank/seeds',
+                            description: 'Machine Learning Examples',
                         },
                     ],
                 },
