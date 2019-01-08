@@ -117,6 +117,11 @@ export class Navigation extends Component {
                             url: 'https://research.google.com/seedbank/seeds',
                             description: 'Machine Learning Examples',
                         },
+                        {
+                            title: 'DatasetSearch',
+                            url: 'https://toolbox.google.com/datasetsearch',
+                            description: 'Google dataset search',
+                        },
                     ],
                 },
 
