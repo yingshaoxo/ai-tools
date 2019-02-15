@@ -2,4 +2,4 @@
 
 A website for sharing Web AI tools.
 
-![hi](https://raw.githubusercontent.com/yingshaoxo/yingshaoxo.github.io/master/states/WantOrNot.png)
+![hi](https://raw.githubusercontent.com/yingshaoxo/yingshaoxo.github.io/master/states/hi.png)
